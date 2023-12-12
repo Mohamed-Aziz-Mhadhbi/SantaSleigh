@@ -1,6 +1,5 @@
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
@@ -9,9 +8,11 @@ void main() {
   runApp(GameWidget(game: SantaGame()));
 }
 
-class SantaGame extends FlameGame with TapDetector {
+class SantaGame extends FlameGame with TapCallbacks {
   Vector2 gravity = Vector2(0, 30);
   late final RouterComponent router;
+  bool gameOver = false;
+  bool showGameOverScreen = false;
 
   @override
   void onLoad() async {
@@ -28,11 +29,15 @@ class SantaGame extends FlameGame with TapDetector {
   }
 
   @override
-  bool containsLocalPoint(Vector2 point) => true;
+  void update(double dt) {
+    if (gameOver && !showGameOverScreen) {
+      router.pushNamed("gameover");
+      showGameOverScreen = true;
+    }
+
+    super.update(dt);
+  }
 
   @override
-  void onTapUp(TapUpInfo info) {
-    gravity.y -= 20;
-    super.onTapUp(info);
-  }
+  bool containsLocalPoint(Vector2 point) => true;
 }

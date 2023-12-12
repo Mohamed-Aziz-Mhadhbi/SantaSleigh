@@ -1,75 +1,34 @@
 // import 'dart:math';
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
+import 'package:santa_sleigh/main.dart';
 
-class Santa extends PositionComponent with CollisionCallbacks {
-  Santa({this.playerRadius = 15});
-
-  final _velocity = Vector2.zero();
-  // final _gravity = 980.0;
-  final _jumpSpeed = 300.0;
-
-  final double playerRadius;
-
+class Santa extends SpriteAnimationComponent with HasGameRef<SantaGame> {
   @override
-  void onLoad() {
-    super.onLoad();
-    add(CircleHitbox(
-      radius: playerRadius,
-      anchor: anchor,
-    ));
-  }
-
-  @override
-  void onMount() {
-    position = Vector2(0, 0);
-    size = Vector2.all(playerRadius * 2);
+  void onLoad() async {
+    await super.onLoad();
+    final santaAnimation = await gameRef.loadSpriteAnimation(
+      "santa.png",
+      SpriteAnimationData.sequenced(
+        amount: 24,
+        amountPerRow: 4,
+        stepTime: 0.1,
+        textureSize: Vector2(140, 50),
+      ),
+    );
+    animation = santaAnimation;
+    position = gameRef.size / 2;
     anchor = Anchor.center;
-    super.onMount();
+    size = Vector2(gameRef.size.y * 110 / 40, gameRef.size.y) * .1;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    position += _velocity * dt;
-
-    // Ground ground = gameRef.findByKeyName(Ground.keyname)!;
-    // if (positionOfAnchor(Anchor.bottomCenter).y > ground.position.y) {
-    //   _velocity.setValues(0, 0);
-    //   position = Vector2(0, ground.position.y - (height / 2));
-    // } else {
-    //   _velocity.y += _gravity * dt;
-    // }
+    if (y < gameRef.size.y && y > 0) {
+      gameRef.gravity.y += .4;
+      position += gameRef.gravity * dt;
+    } else if (!gameRef.showGameOverScreen) {
+      gameRef.gameOver = true;
+    }
   }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawCircle(
-      const Offset(0, 0) + (size / 2).toOffset(),
-      playerRadius,
-      Paint()..color = Colors.yellow,
-    );
-  }
-
-  void jump() {
-    _velocity.y = -_jumpSpeed;
-  }
-}
-
-@override
-void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-  // super.onCollision(intersectionPoints, other);
-
-  // if (other is ComponentsGame) {
-  //   Ground ground = gameRef.findByKeyName(Ground.keyname)!;
-  //   final targetX = ground.position.x;
-  //   final targetY = ground.position.y - (height / 2);
-
-  //   final direction =
-  //       Vector2(targetX - position.x, targetY - position.y).normalized();
-
-  //   _velocity.setValues(direction.x * _jumpSpeed, direction.y * _jumpSpeed);
-  // }
 }
