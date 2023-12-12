@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:santa_sleigh/main.dart';
 
-class SnowBall extends SpriteComponent with HasGameRef<SantaGame> {
+class SnowBall extends Component with HasGameRef<SantaGame> {
   late SpriteAnimationComponent snowball;
   @override
   void onLoad() async {
@@ -26,6 +26,6 @@ class SnowBall extends SpriteComponent with HasGameRef<SantaGame> {
   @override
   void update(double dt) {
     super.update(dt);
-    x = x - 100 * dt;
+    snowball.position.x = snowball.position.x - 100 * dt;
   }
 }

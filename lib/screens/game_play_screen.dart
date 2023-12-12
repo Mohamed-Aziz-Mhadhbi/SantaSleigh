@@ -1,9 +1,11 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/parallax.dart';
 import 'package:santa_sleigh/main.dart';
 import 'package:santa_sleigh/snow_ball.dart';
 
-class GamePlayScreen extends Component with HasGameRef<SantaGame> {
+class GamePlayScreen extends Component
+    with HasGameRef<SantaGame>, TapCallbacks {
   late SpriteAnimationComponent santa;
   @override
   void onLoad() async {
@@ -26,14 +28,14 @@ class GamePlayScreen extends Component with HasGameRef<SantaGame> {
         amount: 24,
         amountPerRow: 4,
         stepTime: 0.1,
-        textureSize: Vector2(30, 20),
+        textureSize: Vector2(140, 50),
       ),
     );
     santa = SpriteAnimationComponent(
       animation: santaAnimation,
       position: gameRef.size / 2,
       anchor: Anchor.center,
-      size: Vector2(gameRef.size.y * 100 / 40, gameRef.size.y) * .1,
+      size: Vector2(gameRef.size.y * 110 / 40, gameRef.size.y) * .1,
     );
     add(santa);
     add(SnowBall());
@@ -46,5 +48,11 @@ class GamePlayScreen extends Component with HasGameRef<SantaGame> {
       gameRef.gravity.y += .4;
       santa.position += gameRef.gravity * dt;
     }
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    gameRef.gravity.y -= 20;
+    super.onTapUp(event);
   }
 }

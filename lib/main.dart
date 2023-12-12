@@ -24,6 +24,9 @@ class SantaGame extends FlameGame with TapDetector {
   }
 
   @override
+  bool containsLocalPoint(Vector2 point) => true;
+
+  @override
   void onTapUp(TapUpInfo info) {
     gravity.y -= 20;
     super.onTapUp(info);
