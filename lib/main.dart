@@ -9,7 +9,7 @@ void main() {
   runApp(GameWidget(game: SantaGame()));
 }
 
-class SantaGame extends FlameGame with TapCallbacks {
+class SantaGame extends FlameGame with TapCallbacks,HasCollisionDetection {
   Vector2 gravity = Vector2(0, 30);
   late final RouterComponent router;
   bool gameOver = false;

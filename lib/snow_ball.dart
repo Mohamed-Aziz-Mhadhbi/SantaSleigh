@@ -17,8 +17,8 @@ class SnowBall extends SpriteAnimationComponent with HasGameRef<SantaGame> {
       ),
     );
     animation = snowballAnimation;
-    double yPosition = _random.nextDouble()*game.size.y;
-    position = gameRef.size / 2;
+    double yPosition = _random.nextDouble() * game.size.y;
+    position = gameRef.size / 3;
     anchor = Anchor.center;
     size = Vector2(gameRef.size.y * 50 / 50, yPosition) * .1;
   }
