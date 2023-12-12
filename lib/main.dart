@@ -2,6 +2,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart' hide Route;
+import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
 
 void main() {
@@ -18,7 +19,10 @@ class SantaGame extends FlameGame with TapDetector {
     add(
       router = RouterComponent(
         initialRoute: "gameplay",
-        routes: {"gameplay": Route(GamePlayScreen.new)},
+        routes: {
+          "gameplay": Route(GamePlayScreen.new),
+          "gameover": Route(GameOverScreen.new)
+        },
       ),
     );
   }
