@@ -49,8 +49,10 @@ class SantaGame extends FlameGame with TapDetector {
   @override
   void update(double dt) {
     super.update(dt);
-    gravity.y += .4;
-    santa.position += gravity * dt;
+    if (santa.y < size.y && santa.y > 0) {
+      gravity.y += .4;
+      santa.position += gravity * dt;
+    }
   }
 
   @override
