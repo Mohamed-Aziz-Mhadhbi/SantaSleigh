@@ -12,8 +12,14 @@ class SantaGame extends FlameGame {
   void onLoad() async {
     super.onLoad();
     ParallaxComponent mountinBackgound = await loadParallaxComponent(
-      [ParallaxImageData('background.png')],
-      baseVelocity: Vector2(10, 0),
+      [
+        ParallaxImageData('background.png'),
+        ParallaxImageData('clouds_mg_1.png'),
+        ParallaxImageData('clouds_mg_2.png'),
+        ParallaxImageData('clouds_mg_3.png'),
+        ParallaxImageData('cloud_lonely.png'),
+      ],
+      baseVelocity: Vector2(40, 0),
       velocityMultiplierDelta: Vector2(1.6, 1.0),
     );
     add(mountinBackgound);
