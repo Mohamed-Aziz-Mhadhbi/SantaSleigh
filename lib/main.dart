@@ -16,5 +16,6 @@ class SantaGame extends FlameGame {
       baseVelocity: Vector2(10, 0),
       velocityMultiplierDelta: Vector2(1.6, 1.0),
     );
+    add(mountinBackgound);
   }
 }
