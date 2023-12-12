@@ -4,6 +4,7 @@ import 'package:flame/input.dart';
 import 'package:flame/parallax.dart';
 import 'package:flame/src/gestures/events.dart';
 import 'package:flutter/material.dart';
+import 'package:santa_sleigh/snow_ball.dart';
 
 void main() {
   runApp(GameWidget(game: SantaGame()));
@@ -44,6 +45,7 @@ class SantaGame extends FlameGame with TapDetector {
       size: Vector2(size.y * 100 / 40, size.y) * .1,
     );
     add(santa);
+    add(SnowBall());
   }
 
   @override
@@ -57,7 +59,7 @@ class SantaGame extends FlameGame with TapDetector {
 
   @override
   void onTapUp(TapUpInfo info) {
-    gravity.y -= .2;
     super.onTapUp(info);
+    gravity.y -= .2;
   }
 }
