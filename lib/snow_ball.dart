@@ -12,14 +12,14 @@ class SnowBall extends SpriteComponent with HasGameRef<SantaGame> {
         amount: 6,
         amountPerRow: 3,
         stepTime: 0.1,
-        textureSize: Vector2(30, 20),
+        textureSize: Vector2(100, 50),
       ),
     );
     snowball = SpriteAnimationComponent(
       animation: snowballAnimation,
       position: gameRef.size / 2,
       anchor: Anchor.center,
-      size: Vector2(gameRef.size.y * 100 / 40, gameRef.size.y) * .1,
+      size: Vector2(gameRef.size.y * 100 / 50, gameRef.size.y) * .1,
     );
   }
 
