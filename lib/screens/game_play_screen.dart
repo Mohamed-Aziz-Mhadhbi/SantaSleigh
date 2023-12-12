@@ -6,6 +6,7 @@ import 'package:santa_sleigh/snow_ball.dart';
 
 class GamePlayScreen extends Component
     with HasGameRef<SantaGame>, TapCallbacks {
+  Timer interval = Timer(6, repeat: true);
   @override
   void onLoad() async {
     await super.onLoad();
@@ -22,7 +23,13 @@ class GamePlayScreen extends Component
     );
     add(mountinBackgound);
     add(gameRef.santa);
-    add(SnowBall());
+    interval.onTick = () => add(SnowBall());
+  }
+
+  @override
+  void update(double dt) {
+    interval.update(dt);
+    super.update(dt);
   }
 
   @override
