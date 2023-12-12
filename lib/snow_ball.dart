@@ -6,6 +6,12 @@ class SnowBall extends SpriteComponent with HasGameRef<SantaGame> {
   void onLoad() async {
     await super.onLoad();
     sprite = await gameRef.loadSprite("snowball.png");
-    size = Vector2(gameRef.size.y, gameRef.size.y)*.2; // (x,y)
+    size = Vector2(gameRef.size.y, gameRef.size.y) * .2; // (x,y)
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    x = x - 100 * dt;
   }
 }
