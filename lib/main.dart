@@ -38,6 +38,4 @@ class SantaGame extends FlameGame with TapCallbacks {
     super.update(dt);
   }
 
-  @override
-  bool containsLocalPoint(Vector2 point) => true;
 }

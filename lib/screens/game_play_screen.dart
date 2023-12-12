@@ -28,6 +28,9 @@ class GamePlayScreen extends Component
   }
 
   @override
+  bool containsLocalPoint(Vector2 point) => true;
+
+  @override
   void onTapUp(TapUpEvent event) {
     gameRef.gravity.y -= 20;
     super.onTapUp(event);
