@@ -3,10 +3,11 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:santa_sleigh/main.dart';
 
-class Santa extends SpriteAnimationComponent with HasGameRef<SantaGame> {
-  Santa() : super() {
-    debugMode = true;
-  }
+class Santa extends SpriteAnimationComponent
+    with HasGameRef<SantaGame>, CollisionCallbacks {
+  // Santa() : super() {
+  //   debugMode = true;
+  // }
   @override
   void onLoad() async {
     await super.onLoad();
@@ -35,5 +36,12 @@ class Santa extends SpriteAnimationComponent with HasGameRef<SantaGame> {
     } else if (!gameRef.showGameOverScreen) {
       gameRef.gameOver = true;
     }
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    gameRef.gameOver = true;
+    super.onCollisionStart(intersectionPoints, other);
   }
 }
