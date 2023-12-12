@@ -2,12 +2,10 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/parallax.dart';
 import 'package:santa_sleigh/main.dart';
-import 'package:santa_sleigh/santa.dart';
 import 'package:santa_sleigh/snow_ball.dart';
 
 class GamePlayScreen extends Component
     with HasGameRef<SantaGame>, TapCallbacks {
-  Santa santa = Santa();
   @override
   void onLoad() async {
     await super.onLoad();
@@ -23,7 +21,7 @@ class GamePlayScreen extends Component
       velocityMultiplierDelta: Vector2(1.6, 1.0),
     );
     add(mountinBackgound);
-    add(santa);
+    add(gameRef.santa);
     add(SnowBall());
   }
 

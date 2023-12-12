@@ -1,8 +1,10 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:santa_sleigh/main.dart';
 
-class GameOverScreen extends Component with HasGameRef<SantaGame> {
+class GameOverScreen extends Component
+    with HasGameRef<SantaGame>, TapCallbacks {
   @override
   void onLoad() async {
     await super.onLoad();
@@ -16,5 +18,18 @@ class GameOverScreen extends Component with HasGameRef<SantaGame> {
         ),
       ),
     );
+  }
+
+  @override
+  bool containsLocalPoint(Vector2 point) => true;
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    gameRef.santa.position = gameRef.size / 2;
+    gameRef.showGameOverScreen = false;
+    gameRef.gameOver = false;
+    gameRef.gravity = Vector2(0, 30);
+    gameRef.router.pop();
+    super.onTapUp(event);
   }
 }

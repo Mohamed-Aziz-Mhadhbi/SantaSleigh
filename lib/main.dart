@@ -1,6 +1,7 @@
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Route;
+import 'package:santa_sleigh/santa.dart';
 import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
 
@@ -13,6 +14,7 @@ class SantaGame extends FlameGame with TapCallbacks {
   late final RouterComponent router;
   bool gameOver = false;
   bool showGameOverScreen = false;
+  Santa santa = Santa();
 
   @override
   void onLoad() async {
