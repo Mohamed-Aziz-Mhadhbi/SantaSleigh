@@ -28,9 +28,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/obstacle.png
-    - assets/images/santa.png
-    - assets/images/background.png
+    - assets/images/
 
 
 
