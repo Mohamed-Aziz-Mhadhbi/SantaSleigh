@@ -1,8 +1,12 @@
 // import 'dart:math';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:santa_sleigh/main.dart';
 
 class Santa extends SpriteAnimationComponent with HasGameRef<SantaGame> {
+  Santa() : super() {
+    debugMode = true;
+  }
   @override
   void onLoad() async {
     await super.onLoad();
@@ -19,6 +23,7 @@ class Santa extends SpriteAnimationComponent with HasGameRef<SantaGame> {
     position = gameRef.size / 2;
     anchor = Anchor.center;
     size = Vector2(gameRef.size.y * 110 / 40, gameRef.size.y) * .1;
+    add(RectangleHitbox.relative(Vector2(.8, .3), parentSize: size));
   }
 
   @override
