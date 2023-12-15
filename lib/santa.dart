@@ -8,22 +8,23 @@ class Santa extends SpriteAnimationComponent
   // Santa() : super() {
   //   debugMode = true;
   // }
+
   @override
   void onLoad() async {
     await super.onLoad();
     final santaAnimation = await gameRef.loadSpriteAnimation(
       "santa.png",
       SpriteAnimationData.sequenced(
-        amount: 24,
+        amount: 12,
         amountPerRow: 4,
         stepTime: 0.1,
-        textureSize: Vector2(140, 50),
+        textureSize: Vector2(153, 130),
       ),
     );
     animation = santaAnimation;
     position = gameRef.size / 2;
     anchor = Anchor.center;
-    size = Vector2(gameRef.size.y * 110 / 40, gameRef.size.y) * .1;
+    size = Vector2(gameRef.size.y * 75 / 40, gameRef.size.y) * .1;
     add(RectangleHitbox.relative(Vector2(.8, .3), parentSize: size));
   }
 

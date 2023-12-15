@@ -1,4 +1,5 @@
 import 'package:flame/events.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:santa_sleigh/santa.dart';
@@ -6,10 +7,13 @@ import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
+  Flame.device.setLandscape();
   runApp(GameWidget(game: SantaGame()));
 }
 
-class SantaGame extends FlameGame with TapCallbacks,HasCollisionDetection {
+class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
   Vector2 gravity = Vector2(0, 30);
   late final RouterComponent router;
   bool gameOver = false;
@@ -39,5 +43,4 @@ class SantaGame extends FlameGame with TapCallbacks,HasCollisionDetection {
 
     super.update(dt);
   }
-
 }
