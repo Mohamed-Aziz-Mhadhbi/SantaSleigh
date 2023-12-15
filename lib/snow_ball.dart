@@ -24,7 +24,7 @@ class SnowBall extends SpriteAnimationComponent with HasGameRef<SantaGame> {
     double yPosition = _random.nextDouble() * game.size.y;
     position = Vector2(gameRef.size.x * .95, yPosition);
     anchor = Anchor.center;
-    size = Vector2(gameRef.size.y * 50 / 20, gameRef.size.y) * .1;
+    size = Vector2(gameRef.size.y * 40 / 30, gameRef.size.y) * .1;
     add(
       CircleHitbox(
           anchor: Anchor.center, radius: size.y * .35, position: size / 2),
