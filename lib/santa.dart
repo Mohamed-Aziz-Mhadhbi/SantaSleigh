@@ -1,13 +1,17 @@
 // import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
+import 'package:flutter/material.dart' hide Draggable;
 import 'package:santa_sleigh/main.dart';
 
 class Santa extends SpriteAnimationComponent
-    with HasGameRef<SantaGame>, CollisionCallbacks {
+    with HasGameRef<SantaGame>, CollisionCallbacks, Draggable {
   // Santa() : super() {
   //   debugMode = true;
   // }
+
+  Vector2? dragDeltaPosition;
 
   @override
   void onLoad() async {
@@ -44,5 +48,36 @@ class Santa extends SpriteAnimationComponent
       Set<Vector2> intersectionPoints, PositionComponent other) {
     gameRef.gameOver = true;
     super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
+  bool onDragUpdate(int pointerId, DragStartInfo info) {
+    dragDeltaPosition = info.eventPosition.global - position;
+    return false;
+  }
+
+  @override
+  bool onDragUpdate(int pointerId, DragUpdateInfo info) {
+    if (parent is! DragDemoGame) {
+      return true;
+    }
+    final dragDeltaPosition = this.dragDeltaPosition;
+    if (dragDeltaPosition == null) {
+      return false;
+    }
+    position.setFrom(info.eventPosition.global - dragDeltaPosition);
+    return false;
+  }
+
+  @override
+  bool onDragEnd(int pointerId, DragEndInfo _) {
+    dragDeltaPosition = null;
+    return false;
+  }
+
+  @override
+  bool onDragCancel(int pointerId) {
+    dragDeltaPosition = null;
+    return false;
   }
 }
