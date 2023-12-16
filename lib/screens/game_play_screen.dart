@@ -4,13 +4,16 @@ import 'package:flame/parallax.dart';
 import 'package:santa_sleigh/gui/gui_elapsedtime.dart';
 import 'package:santa_sleigh/main.dart';
 import 'package:santa_sleigh/actors/snow_ball.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 class GamePlayScreen extends Component
     with HasGameRef<SantaGame>, TapCallbacks {
+  late AudioPool launchSFX;
   Timer interval = Timer(6, repeat: true);
   @override
   void onLoad() async {
     await super.onLoad();
+    await FlameAudio.loopLongAudio("happy-santa.mp3");
     gameRef.elapsedtime.start();
     ParallaxComponent mountinBackgound = await gameRef.loadParallaxComponent(
       [

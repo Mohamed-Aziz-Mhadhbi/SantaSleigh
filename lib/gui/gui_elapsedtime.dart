@@ -6,8 +6,8 @@ class ElapsedTime extends TextComponent with HasGameRef<SantaGame> {
   @override
   void onLoad() {
     super.onLoad();
-    scale = Vector2.all(1.4);
-    position = Vector2(gameRef.size.x * .3, 4);
+    scale = Vector2.all(3);
+    position = Vector2(gameRef.size.x * .2, 4);
     textRenderer = TextPaint(style: const TextStyle(color: Colors.black));
   }
 
