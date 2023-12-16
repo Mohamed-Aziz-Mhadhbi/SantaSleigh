@@ -25,8 +25,28 @@ class GamePlayScreen extends Component
     );
     add(mountinBackgound);
     add(gameRef.santa);
-    interval.onTick = () => add(SnowBall());
+    addSnowBall();
     add(ElapsedTime());
+  }
+
+  void addSnowBall() {
+    interval.onTick = () {
+      double elapsedSeconds = gameRef.elapsedtime.elapsed.inSeconds.toDouble();
+      void addSnowBallAtSecond(int secondToAdd) {
+        Future.delayed(Duration(seconds: secondToAdd), () => add(SnowBall()));
+      }
+
+      add(SnowBall());
+      if (elapsedSeconds > 10.0) {
+        addSnowBallAtSecond(3);
+      }
+      if (elapsedSeconds > 20.0) {
+        addSnowBallAtSecond(2);
+      }
+      if (elapsedSeconds > 30.0) {
+        addSnowBallAtSecond(4);
+      }
+    };
   }
 
   @override

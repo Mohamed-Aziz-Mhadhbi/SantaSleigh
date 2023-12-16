@@ -39,5 +39,13 @@ class SnowBall extends SpriteAnimationComponent with HasGameRef<SantaGame> {
     } else {
       removeFromParent();
     }
+
+    if (gameRef.elapsedtime.elapsed.inSeconds > 30 && x > gameRef.santa.x) {
+      if (gameRef.santa.y > y) {
+        y += 3 * dt;
+      } else {
+        y -= 3 * dt;
+      }
+    }
   }
 }
