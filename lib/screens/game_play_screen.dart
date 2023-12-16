@@ -13,7 +13,8 @@ class GamePlayScreen extends Component
   @override
   void onLoad() async {
     await super.onLoad();
-    await FlameAudio.loopLongAudio("happy-santa.mp3");
+    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('happy-santa.mp3');
     gameRef.elapsedtime.start();
     ParallaxComponent mountinBackgound = await gameRef.loadParallaxComponent(
       [

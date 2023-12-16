@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:santa_sleigh/main.dart';
 
@@ -8,6 +9,7 @@ class GameOverScreen extends Component
   @override
   void onLoad() async {
     await super.onLoad();
+    FlameAudio.bgm.stop();
     add(
       TextComponent(
         text: 'Game Over',
