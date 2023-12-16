@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:santa_sleigh/main.dart';
