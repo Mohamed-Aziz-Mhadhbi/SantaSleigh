@@ -4,8 +4,7 @@ import 'package:flame/parallax.dart';
 import 'package:santa_sleigh/main.dart';
 import 'package:santa_sleigh/snow_ball.dart';
 
-class GamePlayScreen extends Component
-    with HasGameRef<SantaGame>, DragCallbacks {
+class GamePlayScreen extends Component with HasGameRef<SantaGame>,TapCallbacks{
   Timer interval = Timer(6, repeat: true);
   @override
   void onLoad() async {
@@ -35,5 +34,9 @@ class GamePlayScreen extends Component
   @override
   bool containsLocalPoint(Vector2 point) => true;
 
- 
+  @override
+  void onTapUp(TapUpEvent event) {
+    gameRef.gravity.y -= 20;
+    super.onTapUp(event);
+  }
 }

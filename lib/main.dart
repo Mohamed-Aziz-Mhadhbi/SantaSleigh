@@ -1,3 +1,4 @@
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Route;
@@ -12,7 +13,7 @@ void main() {
   runApp(GameWidget(game: SantaGame()));
 }
 
-class SantaGame extends FlameGame with HasDraggables, HasCollisionDetection {
+class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
   Vector2 gravity = Vector2(0, 30);
   late final RouterComponent router;
   bool gameOver = false;
