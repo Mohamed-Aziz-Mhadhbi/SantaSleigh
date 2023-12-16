@@ -21,6 +21,14 @@ class GameOverScreen extends Component
   }
 
   @override
+  void update(double dt) {
+    if (gameRef.elapsedtime.isRunning) {
+      gameRef.elapsedtime.stop();
+    }
+    super.update(dt);
+  }
+
+  @override
   bool containsLocalPoint(Vector2 point) => true;
 
   @override
@@ -30,6 +38,7 @@ class GameOverScreen extends Component
     gameRef.gameOver = false;
     gameRef.gravity = Vector2(0, 30);
     gameRef.router.pop();
+    gameRef.elapsedtime.start();
     super.onTapUp(event);
   }
 }

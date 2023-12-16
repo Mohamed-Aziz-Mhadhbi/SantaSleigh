@@ -1,14 +1,17 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/parallax.dart';
+import 'package:santa_sleigh/gui/gui_elapsedtime.dart';
 import 'package:santa_sleigh/main.dart';
-import 'package:santa_sleigh/snow_ball.dart';
+import 'package:santa_sleigh/actors/snow_ball.dart';
 
-class GamePlayScreen extends Component with HasGameRef<SantaGame>,TapCallbacks{
+class GamePlayScreen extends Component
+    with HasGameRef<SantaGame>, TapCallbacks {
   Timer interval = Timer(6, repeat: true);
   @override
   void onLoad() async {
     await super.onLoad();
+    gameRef.elapsedtime.start();
     ParallaxComponent mountinBackgound = await gameRef.loadParallaxComponent(
       [
         ParallaxImageData('sky.png'),
@@ -23,6 +26,7 @@ class GamePlayScreen extends Component with HasGameRef<SantaGame>,TapCallbacks{
     add(mountinBackgound);
     add(gameRef.santa);
     interval.onTick = () => add(SnowBall());
+    add(ElapsedTime());
   }
 
   @override

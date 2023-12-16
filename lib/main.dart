@@ -2,7 +2,7 @@ import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Route;
-import 'package:santa_sleigh/santa.dart';
+import 'package:santa_sleigh/actors/santa.dart';
 import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
 import 'package:santa_sleigh/screens/game_start_screen.dart';
@@ -20,6 +20,7 @@ class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
   bool gameOver = false;
   bool showGameOverScreen = false;
   Santa santa = Santa();
+  Stopwatch elapsedtime = Stopwatch();
 
   @override
   Future<void>? onLoad() async {
@@ -30,7 +31,7 @@ class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
         routes: {
           "gameplay": Route(GamePlayScreen.new),
           "gameover": Route(GameOverScreen.new),
-          "gamestart":Route(GameStartScreen.new),
+          "gamestart": Route(GameStartScreen.new),
         },
       ),
     );
@@ -42,7 +43,6 @@ class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
       router.pushNamed("gameover");
       showGameOverScreen = true;
     }
-
     super.update(dt);
   }
 }
