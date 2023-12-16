@@ -23,6 +23,7 @@ class GameOverScreen extends Component
   @override
   void update(double dt) {
     if (gameRef.elapsedtime.isRunning) {
+      gameRef.elapsedtime.reset();
       gameRef.elapsedtime.stop();
     }
     super.update(dt);
