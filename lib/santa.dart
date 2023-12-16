@@ -5,9 +5,9 @@ import 'package:santa_sleigh/main.dart';
 
 class Santa extends SpriteAnimationComponent
     with HasGameRef<SantaGame>, CollisionCallbacks {
-  Santa() : super() {
-    debugMode = true;
-  }
+  // Santa() : super() {
+  //   debugMode = true;
+  // }
 
   @override
   void onLoad() async {
