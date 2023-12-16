@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' hide Route;
 import 'package:santa_sleigh/santa.dart';
 import 'package:santa_sleigh/screens/game_over_screen.dart';
 import 'package:santa_sleigh/screens/game_play_screen.dart';
+import 'package:santa_sleigh/screens/game_start_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +26,11 @@ class SantaGame extends FlameGame with TapCallbacks, HasCollisionDetection {
     super.onLoad();
     add(
       router = RouterComponent(
-        initialRoute: "gameplay",
+        initialRoute: "gamestart",
         routes: {
           "gameplay": Route(GamePlayScreen.new),
-          "gameover": Route(GameOverScreen.new)
+          "gameover": Route(GameOverScreen.new),
+          "gamestart":Route(GameStartScreen.new),
         },
       ),
     );
