@@ -9,7 +9,7 @@ class GameOverScreen extends Component
   @override
   void onLoad() async {
     await super.onLoad();
-    FlameAudio.bgm.stop();
+    FlameAudio.bgm.dispose();
     add(
       TextComponent(
         text: 'Game Over',
@@ -42,6 +42,7 @@ class GameOverScreen extends Component
     gameRef.gravity = Vector2(0, 30);
     gameRef.router.pop();
     gameRef.elapsedtime.start();
+    FlameAudio.bgm.play('happy-santa.mp3');
     super.onTapUp(event);
   }
 }
